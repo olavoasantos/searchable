@@ -188,7 +188,7 @@ describe('Searchable tests', () => {
       { id: 1, name: 'John' },
     ]);
   });
-  it.only('should sort results by name', () => {
+  it('should search and sort a list', () => {
     const LIST = [
       { id: 1, name: 'John' },
       { id: 2, name: 'Jane' },
