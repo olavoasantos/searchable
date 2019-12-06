@@ -197,7 +197,7 @@ describe('Searchable tests', () => {
     ];
 
     const searchable = new Searchable(LIST, {
-      sorting: { id: ['id', 'name'], name: ['name', 'id'] },
+      sorting: { id: ['id'], name: ['name'] },
     });
 
     expect(searchable.searchFor('name', 'Jane').sortBy('name').all()).toMatchObject([
