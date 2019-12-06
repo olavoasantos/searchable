@@ -115,6 +115,33 @@ describe('Searchable tests', () => {
 
     expect(searchable.searchFor(2).first()).toMatchObject({ id: 2, name: 'Jane' });
   });
+  it('should return search for a term on a given field', () => {
+    const LIST = [
+      { id: 1, name: 'John' },
+      { id: 2, name: 'Jane' },
+      { id: 3, name: 'Janette' },
+      { id: 4, name: 'Marcus' },
+    ];
+
+    const searchable = new Searchable(LIST, { search: { keys: ['id', 'name'] }, sorting: {} });
+
+    expect(searchable.searchFor('id', 2).first()).toMatchObject({ id: 2, name: 'Jane' });
+  });
+  it('should return search for a term on a given field', () => {
+    const LIST = [
+      { id: 1, lastName: 'Doe', name: 'John' },
+      { id: 2, lastName: 'Doe', name: 'Jane' },
+      { id: 3, lastName: 'Arc', name: 'Janette' },
+      { id: 4, lastName: 'Wilford', name: 'Marcus' },
+    ];
+
+    const searchable = new Searchable(LIST, { search: { keys: ['id', 'name'] }, sorting: {} });
+
+    expect(searchable.searchFor('name', 'lastName', 'arc').all()).toMatchObject([
+      { id: 3, lastName: 'Arc', name: 'Janette' },
+      { id: 4, lastName: 'Wilford', name: 'Marcus' },
+    ]);
+  });
   it('should return search for a partial name', () => {
     const LIST = [
       { id: 1, name: 'John' },
