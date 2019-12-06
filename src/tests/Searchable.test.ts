@@ -188,4 +188,21 @@ describe('Searchable tests', () => {
       { id: 1, name: 'John' },
     ]);
   });
+  it.only('should sort results by name', () => {
+    const LIST = [
+      { id: 1, name: 'John' },
+      { id: 2, name: 'Jane' },
+      { id: 3, name: 'Janette' },
+      { id: 4, name: 'Marcus' },
+    ];
+
+    const searchable = new Searchable(LIST, {
+      sorting: { id: ['id', 'name'], name: ['name', 'id'] },
+    });
+
+    expect(searchable.searchFor('name', 'Jane').sortBy('name').all()).toMatchObject([
+      { id: 2, name: 'Jane' },
+      { id: 3, name: 'Janette' },
+    ]);
+  });
 });

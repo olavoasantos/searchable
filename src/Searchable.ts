@@ -30,7 +30,7 @@ class Searchable<T = any> implements SearchableInterface {
     if (Boolean(first) && sortBy.length > 0) {
       this.results = this.results.sort(
         sortBy.reduce(
-          (sort: any, then: any) => sort.thenby(then, order === 'ASC' ? 1 : -1),
+          (sort: any, then: any) => sort.thenBy(then, order === 'ASC' ? 1 : -1),
           firstBy(first),
         ),
       );
